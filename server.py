@@ -19,6 +19,8 @@ def get_emotion_detector():
 
     text = request.args['textToAnalyze']
     analysis = emotion_detector(text)
+    if analysis['dominant_emotion'] is None:
+        return 'Invalid text! Please try again!.'
     response = 'For the given statement, the system response is'
     parts = []
     for emotion, score in analysis.items():
